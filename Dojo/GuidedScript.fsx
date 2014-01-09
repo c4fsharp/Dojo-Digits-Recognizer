@@ -48,14 +48,13 @@ let greet name =
 // greet "World";;
 // </F# QUICK-STARTER> 
 
-// Then, load data files from the following location:
- 
-// training set of 5,000 examples: 
-// http://brandewinder.blob.core.windows.net/public/trainingsample.csv
- 
-// validation set of 500 examples, to test your model:
-// http://brandewinder.blob.core.windows.net/public/validationsample.csv
- 
+// Two data files are included in the same place you
+// found this script: 
+// trainingsample.csv, a file that contains 5,000 examples, and 
+// validationsample.csv, a file that contains 500 examples.
+// The first file will be used to train your model, and the
+// second one to validate the quality of the model.
+
  
 // 1. GETTING SOME DATA
  
