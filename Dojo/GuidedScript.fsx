@@ -26,7 +26,7 @@
  
 // Create a new F# Library project, and 
 // copy the entire contents of this file
-// in "Script.fsx"
+// into "Script.fsx"
 
 // <F# QUICK-STARTER> 
 // With F# Script files (.fsx) and F# Interactive,
@@ -34,6 +34,7 @@
 
 // Try typing let x = 42 in the script file, 
 // right-click and select "Execute in interactive".
+
 // let "binds" the value on the right to a name.
 
 // Try now typing x + 3;; in the F# Interactive window.
@@ -42,6 +43,7 @@
 // Now right-click the following 2 lines and execute:
 let greet name = 
     printfn "Hello, %s" name
+
 // let also binds a name to a function.
 // greet is a function with one argument, name.
 // You should be able to run this in F# Interactive:
@@ -54,7 +56,6 @@ let greet name =
 // validationsample.csv, a file that contains 500 examples.
 // The first file will be used to train your model, and the
 // second one to validate the quality of the model.
-
  
 // 1. GETTING SOME DATA
  
@@ -69,8 +70,7 @@ open System.IO
 
 // the following might come in handy: 
 //File.ReadAllLines(path)
-// returns an array of strings for each line
- 
+// returns an array of strings for each line 
  
 // [ YOUR CODE GOES HERE! ]
  
@@ -86,14 +86,17 @@ open System.IO
 // into another array by applying a function to it.
 // Example: starting from an array of strings:
 let strings = [| "Machine"; "Learning"; "with"; "F#"; "is"; "fun" |]
-// we can transform it into a new array,
+
+// We can transform it into a new array,
 // containing the length of each string:
 let lengths = Array.map (fun (s:string) -> s.Length) strings
-// We can make it look nicer, using pipe-forward:
+// The exact same operation above can be 
+// done using the forward pipe operator, 
+// which makes it look nicer:
 let lengths2 = strings |> Array.map (fun s -> s.Length)
 // </F# QUICK-STARTER> 
  
-// the following function might help
+// The following function might help
 let csvToSplit = "1,2,3,4,5"
 let splitResult = csvToSplit.Split(',')
  
@@ -107,15 +110,15 @@ let splitResult = csvToSplit.Split(',')
 
 // <F# QUICK-STARTER>  
 // Array slicing quick starter:
-// let's start with an Array of ints:
+// Let's start with an Array of ints:
 let someNumbers = [| 0 .. 10 |] // create an array from 0 to 10
-// you can access Array elements by index:
+// You can access Array elements by index:
 let first = someNumbers.[0] 
-// you can also slice the array:
+// You can also slice the array:
 let twoToFive = someNumbers.[ 1 .. 4 ] // grab a slice
 let upToThree = someNumbers.[ .. 2 ] 
 // </F# QUICK-STARTER> 
- 
+
 
 // [ YOUR CODE GOES HERE! ]
  
@@ -141,12 +144,13 @@ let convertedInt = Convert.ToInt32("42")
 // Rather than dealing with a raw array of ints,
 // for convenience let's store these into an array of Records
 
-
+// <F# QUICK-STARTER>  
 // Record quick starter: we can declare a 
 // Record (a lightweight, immutable class) type that way:
 type Example = { Label:int; Pixels:int[] }
 // and instantiate one this way:
 let example = { Label = 1; Pixels = [| 1; 2; 3; |] }
+// </F# QUICK-STARTER>  
 
  
 // [ YOUR CODE GOES HERE! ]
@@ -157,11 +161,10 @@ let example = { Label = 1; Pixels = [| 1; 2; 3; |] }
 // We need to compute the distance between images
 // Math reminder: the euclidean distance is
 // distance [ x1; y1; z1 ] [ x2; y2; z2 ] = 
-// (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2)
+// sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2))
  
 // <F# QUICK-STARTER> 
 // Array.map2 could come in handy here.
-// Array.map2 quick start example
 // Suppose we have 2 arrays:
 let point1 = [| 0; 1; 2 |]
 let point2 = [| 3; 4; 5 |]
@@ -175,12 +178,12 @@ let map2PointsExample (P1: int[]) (P2: int[]) =
     Array.map2 (fun p1 p2 -> p1 + p2) P1 P2
 // </F# QUICK-STARTER>  
 
+
 // Having a function like
 let distance (p1: int[]) (p2: int[]) = 42
 // would come in very handy right now,
 // except that in this case, 
 // 42 is likely not the right answer
-
  
 // [ YOUR CODE GOES HERE! ]
  
@@ -196,8 +199,7 @@ let distance (p1: int[]) (p2: int[]) = 42
 // <F# QUICK-STARTER> 
 // Array.minBy can be handy here, to find
 // the closest element in the Array of examples.
-// Array.minBy quick start: 
-// suppose we have an Array of Example:
+// Suppose we have an Array of Example:
 let someData = 
     [| { Label = 0; Pixels = [| 0; 1 |] };
        { Label = 1; Pixels = [| 9; 2 |] };
@@ -208,6 +210,7 @@ let findThatGuy =
     someData 
     |> Array.maxBy (fun x -> x.Pixels.[0])
 // </F# QUICK-STARTER> 
+
  
 // <F# QUICK-STARTER> 
 // F# and closures work very well together
@@ -218,7 +221,8 @@ let functionWithClosure (x: int) =
     else false
 // </F# QUICK-STARTER>  
  
-// The classifier function should probably
+
+ // The classifier function should probably
 // look like this - except that this one will
 // classify everything as a 0:
 let classify (unknown:int[]) =
@@ -238,11 +242,13 @@ let classify (unknown:int[]) =
 // Now that we have a classifier, we need to check
 // how good it is. 
 // This is where the 2nd file, validationsample.csv,
-// comes in handy. For each Example in the 2nd file,
+// comes in handy. 
+// For each Example in the 2nd file,
 // we know what the true Label is, so we can compare
 // that value with what the classifier says.
 // You could now check for each 500 example in that file
 // whether your classifier returns the correct answer,
 // and compute the % correctly predicted.
+ 
  
 // [ YOUR CODE GOES HERE! ]
