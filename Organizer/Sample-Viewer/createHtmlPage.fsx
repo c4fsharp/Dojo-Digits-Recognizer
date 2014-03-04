@@ -1,3 +1,13 @@
+// Running the following lines in F# interactive will create three files:
+// - training.png
+// - validation.png
+// - digits.html
+//
+// Note:
+// - run "PossibleSolution.fsx" before running this script
+// - the file "digits.html.template" is expected to be in the current directory
+// - the new files will be created in the current directory
+
 open System.IO
 open System.Drawing
 open System.Drawing.Imaging
