@@ -73,8 +73,8 @@ open System.IO
 // returns an array of strings for each line 
  
 // [ YOUR CODE GOES HERE! ]
- 
- 
+
+
 // 2. EXTRACTING COLUMNS
  
 // Break each line of the file into an array of string,
@@ -102,8 +102,8 @@ let splitResult = csvToSplit.Split(',')
  
  
 // [ YOUR CODE GOES HERE! ]
- 
- 
+
+
 // 3. CLEANING UP HEADERS
  
 // Did you note that the file has headers? We want to get rid of it.
@@ -121,8 +121,8 @@ let upToThree = someNumbers.[ .. 2 ]
 
 
 // [ YOUR CODE GOES HERE! ]
- 
- 
+
+
 // 4. CONVERTING FROM STRINGS TO INTS
  
 // Now that we have an array containing arrays of strings,
@@ -137,8 +137,8 @@ let convertedInt = Convert.ToInt32("42")
  
  
 // [ YOUR CODE GOES HERE! ]
- 
- 
+
+
 // 5. CONVERTING ARRAYS TO RECORDS
  
 // Rather than dealing with a raw array of ints,
@@ -154,8 +154,8 @@ let example = { Label = 1; Pixels = [| 1; 2; 3; |] }
 
  
 // [ YOUR CODE GOES HERE! ]
- 
- 
+
+
 // 6. COMPUTING DISTANCES
  
 // We need to compute the distance between images
@@ -186,8 +186,8 @@ let distance (p1: int[]) (p2: int[]) = 42
 // 42 is likely not the right answer
  
 // [ YOUR CODE GOES HERE! ]
- 
- 
+
+
 // 7. WRITING THE CLASSIFIER FUNCTION
  
 // We are now ready to write a classifier function!
@@ -235,8 +235,8 @@ let classify (unknown:int[]) =
     0 
  
 // [ YOUR CODE GOES HERE! ]
- 
- 
+
+
 // 8. EVALUATING THE MODEL AGAINST VALIDATION DATA
  
 // Now that we have a classifier, we need to check
