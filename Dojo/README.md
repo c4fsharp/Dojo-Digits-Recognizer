@@ -1,3 +1,26 @@
+# About
+
+Originally from: http://huonw.github.io/2014/06/10/knn-rust.html
+
+There are two csv files:
+
+* trainingsample.csv
+* validationsample.csv
+
+Format is:
+
+* First row is header.
+* Given a data row (not header),
+    * First column is number that the image is representing.
+    * The rest of columns are pixels of the image.
+
+For each image (row) in `trainingsample.csv`, find the best matching image in `validationsample.csv`.
+And compare the number (first column).
+
+For example, 5th image of `trainingsample.csv` is 0. And if you found the best matching image from `validationsample.csv`, 
+it should be 0.
+
+
 # python
 
     $ python knn.py --concurrent 6
