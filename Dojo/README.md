@@ -82,3 +82,9 @@ Correct answer should be `94.4%`. There are 500 images in `validationsample.csv`
     $ ./knn
     94.000000Duration: 4.147326635./knn  4.11s user 0.05s system 100% cpu 4.159 total
     
+# java
+
+    $ javac Knn.java
+    $ java Knn
+    94.4% Took: 1.5320 secs
+    
