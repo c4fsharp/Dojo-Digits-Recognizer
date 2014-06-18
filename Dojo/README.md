@@ -22,6 +22,13 @@ it should be 0.
 
 Correct answer should be `94.4%`. There are 500 images in `validationsample.csv`. 472 of them are _correctly_ matched against 5000 images in `trainingsample.csv`.
 
+# Summary
+
+For non-parallel solutions, Java is the fastest. Then Rust, followed by Go.
+
+For all solutions (including parallel solutions), Rust is the fastest. Then Java, followed by Go.
+
+
 # pseudo code
 
     validationsample.csv = parsed from file
@@ -66,6 +73,11 @@ Correct answer should be `94.4%`. There are 500 images in `validationsample.csv`
     Percentage correct: 94.4% Took: 0.754412
     ./knn  4.48s user 0.06s system 486% cpu 0.934 total
     
+    $ rustc -O knn_single.rs    
+    $ ./knn_single 
+    Percentage correct: 94.4% Took: 3.718948
+    ./knn_single  3.85s user 0.02s system 99% cpu 3.877 total
+
 # c
 
     $ cd c
