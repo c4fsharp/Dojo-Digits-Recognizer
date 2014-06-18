@@ -7,7 +7,7 @@ debug:
 	gdb ./knn
 
 build:
-	gcc -o knn -O3 -std=gnu99 -Wall -Werror --pedantic  knn.c opts.c data.c maths.c
+	gcc -o knn -O2 -std=gnu99 -Wall -Werror --pedantic  knn.c opts.c data.c maths.c
 
 clean:
 	rm -rf knn

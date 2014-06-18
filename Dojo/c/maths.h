@@ -4,6 +4,9 @@
 #include "data.h"
 
 int distance_sqr(Data valid, int vrow, Data sample, int srow);
-void compute(Data valid, Data sample);
+double compute(Data valid, Data sample);
+
+long now();
+double millis2seconds(long millis);
 
 #endif

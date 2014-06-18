@@ -1,4 +1,6 @@
 #include "maths.h"
+#include <sys/time.h>
+#include <stdlib.h>
 
 int distance_sqr(Data valid, int vrow, Data sample, int srow) {
   int result = 0;
@@ -23,9 +25,25 @@ int find_match(Data valid, Data sample, int srow) {
   return best_valid_label;
 }
 
-void compute(Data valid, Data sample) {
+double compute(Data valid, Data sample) {
+  int matches = 0;
   for (int srow=0; srow<sample.num_rows; srow++) {
-     find_match(valid, sample, srow);
-    // wtf do i do here saml
+     int vlabel = find_match(valid, sample, srow);
+     int slabel = Data_get(sample, srow, 0);
+     if (vlabel == slabel) {
+       matches++;
+     }
   }
+  double percent = ((double)matches / (double)valid.num_rows) * 100;
+  return percent;
+}
+
+long now() {
+  struct timeval time;
+  gettimeofday(&time, NULL);
+  return (time.tv_sec * 1000) + (time.tv_usec / 1000);
+}
+
+double millis2seconds(long millis) {
+	return (double)millis / 1000;
 }
