@@ -92,7 +92,9 @@ For all solutions (including parallel solutions), Rust is the fastest. Then Java
 
     $ go build -o knn knn_hfaafb.go
     $ ./knn
-    94.000000Duration: 4.147326635./knn  4.11s user 0.05s system 100% cpu 4.159 total
+    Match: 94.4% 
+    Duration: 3.247531573s 
+    ./knn_hfaafb  3.99s user 0.04s system 100% cpu 4.029 total
     
 # java
 
