@@ -1,5 +1,5 @@
 package main
-
+ 
 import (
 	"encoding/csv"
 	"fmt"
@@ -9,86 +9,77 @@ import (
 	"strconv"
 	"time"
 )
-
-func readData(filename string) ([][]int, error) {
-	var result [][]int
-
+ 
+func readData(filename string) [][]int {
+	var rows [][]int
+ 
 	file, err := os.Open(filename)
 	if err != nil {
-		return result, err
+		log.Fatal(err)
 	}
 	defer file.Close()
-
+ 
 	c := csv.NewReader(file)
-
+ 
 	// skip header
 	c.Read()
-
+ 
 	for data := []int{}; ; data = []int{} {
 		row, err := c.Read()
 		if err == io.EOF {
 			break
 		} else if err != nil {
-			return result, err
+			log.Fatal(err)
 		}
-
+ 
 		// convert elements to int
 		for i := 0; i < len(row); i++ {
 			v, _ := strconv.Atoi(row[i])
 			data = append(data, v)
 		}
-
-		result = append(result, data)
+ 
+		rows = append(rows, data)
 	}
-
-	return result, nil
+ 
+	return rows
 }
-
+ 
 func main() {
+	train := readData("trainingsample.csv")
+	valid := readData("validationsample.csv")
 	start := time.Now()
-
-	train, err := readData("trainingsample.csv")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	valid, err := readData("validationsample.csv")
-	if err != nil {
-		log.Fatal(err)
-	}
-
+ 
 	var (
-		matches      int
-		minimumSum   int
-		minimumLabel int
-		distance     int
-		pxs          []int
-		pys          []int
-		t            int
+		match    int
+		minSum   int
+		minLabel int
+		dist     int
+		xsp      []int
+		ysp      []int
+		diff     int
 	)
-
+ 
 	for _, xs := range valid {
-		minimumSum = 0
-		minimumLabel = 0
+		minSum = 0
+		minLabel = 0
 		for _, ys := range train {
-			distance = 0
-			pxs = xs[1:]
-			pys = ys[1:]
-			for i := 0; i < len(pxs); i++ {
-				t = pxs[i] - pys[i]
-				distance += t * t
+			dist = 0
+			xsp = xs[1:]
+			ysp = ys[1:]
+			for i := 0; i < len(xsp); i++ {
+				diff = xsp[i] - ysp[i]
+				dist += diff * diff
 			}
-			if minimumSum == 0 || distance < minimumSum {
-				minimumSum = distance
-				minimumLabel = ys[:1][0]
+			if minSum == 0 || dist < minSum {
+				minSum = dist
+				minLabel = ys[:1][0]
 			}
 		}
-		if minimumLabel == xs[:1][0] {
-			matches++
+		if minLabel == xs[:1][0] {
+			match++
 		}
 	}
-
-	r := float64(matches * 100.00 / len(valid))
-	fmt.Printf("%f", r)
-	fmt.Printf("Duration: %v", time.Since(start).Seconds())
+ 
+	fmt.Printf("Match: %v%% \n", float64(match*100)/float64(len(valid)))
+	fmt.Printf("Duration: %s \n", time.Since(start).String())
 }
