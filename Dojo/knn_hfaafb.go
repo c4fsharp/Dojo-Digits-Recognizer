@@ -24,7 +24,8 @@ func readData(filename string) [][]int {
 	// skip header
 	c.Read()
  
-	for data := []int{}; ; data = []int{} {
+	for {
+        data := []int{}
 		row, err := c.Read()
 		if err == io.EOF {
 			break
