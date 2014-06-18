@@ -24,6 +24,10 @@ Correct answer should be `94.4%`. There are 500 images in `validationsample.csv`
 
 # pseudo code
 
+    validationsample.csv = parsed from file
+    trainingsample.csv = parsed from file
+
+    t = now()
     good_match_count = 0
     for unknown in validationsample.csv:
         match = null
@@ -35,6 +39,10 @@ Correct answer should be `94.4%`. There are 500 images in `validationsample.csv`
                 match = known
         if match.label == unknown.label:
             good_match_count++
+
+    print(good_match_count/validationsample.csv.length)
+    print(now() - t)
+
 
     function distance(pixels1, pixels2):
         result = 0
