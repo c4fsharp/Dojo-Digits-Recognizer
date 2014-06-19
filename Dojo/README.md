@@ -14,11 +14,11 @@ Format is:
     * First column is number that the image is representing.
     * The rest of columns are pixels of the image.
 
-For each image (row) in `trainingsample.csv`, find the best matching image in `validationsample.csv`.
+For each image (row) in `validationsample.csv`, find the best matching image in `trainingsample.csv`.
 And compare the number (first column).
 
-For example, 5th image of `trainingsample.csv` is 0. And if you found the best matching image from `validationsample.csv`, 
-it should be 0.
+For example, 5th image of `validationsample.csv` is 3. And if you found the best matching image from `trainingsample.csv`, 
+its label should be 3.
 
 Correct answer should be `94.4%`. There are 500 images in `validationsample.csv`. 472 of them are _correctly_ matched against 5000 images in `trainingsample.csv`.
 
@@ -61,6 +61,8 @@ For all solutions (including parallel solutions), Rust is the fastest. Then Java
 
 # python
 
+using all cores
+
     $ python knn.py
     count: 500 match: 472
     94.4% Took: 0:00:48.740370
@@ -68,17 +70,23 @@ For all solutions (including parallel solutions), Rust is the fastest. Then Java
     
 # rust
 
+all cores
+
     $ rustc -O knn.rs
     $ ./knn
     Percentage correct: 94.4% Took: 0.754412
     ./knn  4.48s user 0.06s system 486% cpu 0.934 total
     
+single thread
+
     $ rustc -O knn_single.rs    
     $ ./knn_single 
     Percentage correct: 94.4% Took: 3.718948
     ./knn_single  3.85s user 0.02s system 99% cpu 3.877 total
 
 # c
+
+single thread
 
     $ cd c
     $ ./knn -t ../trainingsample.csv -v ../validationsample.csv -n 6
@@ -90,6 +98,8 @@ For all solutions (including parallel solutions), Rust is the fastest. Then Java
 
 # go
 
+single thread
+
     $ go build -o knn knn_hfaafb.go
     $ ./knn
     Match: 94.4% 
@@ -97,6 +107,8 @@ For all solutions (including parallel solutions), Rust is the fastest. Then Java
     ./knn_hfaafb  3.99s user 0.04s system 100% cpu 4.029 total
     
 # java
+
+single thread
 
     $ javac Knn.java
     $ java Knn
