@@ -100,11 +100,11 @@ single thread
 
 single thread
 
-    $ go build -o knn knn_hfaafb.go
+    $ go build -o knn knn.go
     $ ./knn
     Match: 94.4% 
     Duration: 3.247531573s 
-    ./knn_hfaafb  3.99s user 0.04s system 100% cpu 4.029 total
+    ./knn  3.99s user 0.04s system 100% cpu 4.029 total
     
 # java
 
