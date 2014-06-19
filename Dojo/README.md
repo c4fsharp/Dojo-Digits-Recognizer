@@ -2,6 +2,12 @@
 
 Originally from: http://huonw.github.io/2014/06/10/knn-rust.html
 
+# GOALLLL
+
+Until I lure someone to implement node.js version and put it on npm for profit.
+
+# Explanation
+
 There are two csv files:
 
 * trainingsample.csv
