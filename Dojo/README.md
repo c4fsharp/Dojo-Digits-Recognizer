@@ -34,7 +34,6 @@ For non-parallel solutions, Java is the fastest. Then Rust, followed by Go.
 
 For all solutions (including parallel solutions), Rust is the fastest. Then Java, followed by Go.
 
-
 # pseudo code
 
     validationsample.csv = parsed from file
@@ -64,6 +63,10 @@ For all solutions (including parallel solutions), Rust is the fastest. Then Java
             result += d*d
         return result
 
+# vpenis
+
+Host 'sam-HP-Z400', running Linux 3.13.0-29-generic - Cpu0: Intel 3326 MHz Cpu1: Intel 1596 MHz Cpu2: Intel 2793 MHz Cpu3: Intel 1596 MHz Cpu4: Intel 1596 MHz Cpu5: Intel 1596 MHz; Up: 4d+3:30; Users: 20; Load: 0.47; Free: [Mem: 1990/11999 Mio] [Swap: 7340/7467 Mio] [/: 48537/172755 Mio] [/media/data: 51715/99297 Mio]; Vpenis: 486.6 cm;
+
 
 # python
 
@@ -74,6 +77,12 @@ using all cores
     94.4% Took: 0:00:48.740370
     python knn.py  271.71s user 0.90s system 540% cpu 50.430 total
     
+numpy single core
+
+    $ python knn_numpy.py 
+    94.4
+    elapsed time: 16.4862749577
+
 # rust
 
 all cores
