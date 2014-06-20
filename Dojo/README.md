@@ -121,6 +121,14 @@ single thread
     Duration: 3.247531573s 
     ./knn  3.99s user 0.04s system 100% cpu 4.029 total
     
+multi thread
+
+    $ go build knn.go
+    $ ./knn
+    Match: 472 94.40% 
+    Duration: 748.936676ms 
+    ./knn  4.78s user 0.05s system 314% cpu 1.533 total
+        
 # java
 
 single thread

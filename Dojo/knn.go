@@ -87,12 +87,25 @@ func main() {
 	chunkSize := inputSize / numCpu
 	c := make(chan int, numCpu)
 
-	for i := 0; i < numCpu; i++ {
-		go calcGoodCount(i*chunkSize, (i+1)*chunkSize, valid, train, c)
+	i := 0
+	begin := 0
+	end := 0
+
+	numGoroutines := 0
+	for i = 0; i < numCpu; i++ {
+		begin = i * chunkSize
+		end = (i + 1) * chunkSize
+		go calcGoodCount(begin, end, valid, train, c)
+		numGoroutines += 1
+	}
+
+	if end < inputSize {
+		go calcGoodCount(end, inputSize, valid, train, c)
+		numGoroutines += 1
 	}
 
 	match := 0
-	for i := 0; i < numCpu; i++ {
+	for i := 0; i < numGoroutines; i++ {
 		matches := <-c
 		match += matches
 	}
