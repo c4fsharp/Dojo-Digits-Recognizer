@@ -1,3 +1,4 @@
+#load @"..\Dojo\Helper.fsx"
 open System.IO
 
 type Image = int []

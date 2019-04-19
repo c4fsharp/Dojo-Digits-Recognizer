@@ -150,12 +150,24 @@ let convertedInt = Convert.ToInt32("42")
 type Example = { Label:int; Pixels:int[] }
 // and instantiate one this way:
 let example = { Label = 1; Pixels = [| 1; 2; 3; |] }
-// </F# QUICK-STARTER>  
+// </F# QUICK-STARTER>
 
  
 // [ YOUR CODE GOES HERE! ]
  
- 
+// 5.1 VISUALISING THE DATA
+
+// You can visualise the data for an observation using
+// a helper function in this repository. First, you can
+// "load" the helper module using the #load FSI command:
+//#load "Helper.fsx"
+// This module contains a function, prettyPrint, which
+// prints an ASCII art representation of the number
+// directly into the REPL e.g.
+// prettyPrint example.Pixels
+
+// [ YOUR CODE GOES HERE! ]
+
 // 6. COMPUTING DISTANCES
  
 // We need to compute the distance between images
