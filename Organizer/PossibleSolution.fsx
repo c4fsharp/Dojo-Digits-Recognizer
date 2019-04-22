@@ -5,36 +5,41 @@ type Observation = { Label:int; Pixels:Image }
 type Model = Image -> int
 
 let euclDistance (img1:Image) (img2:Image) =
-    (img1,img2) ||> Seq.map2 (fun x y -> (x-y) * (x-y)) |> Seq.sum
+    (img1, img2)
+    ||> Seq.map2 (fun x y -> (x-y) * (x-y))
+    |> Seq.sum
 
-let train trainingSet = 
-    let classifier (img:Image) =
+let train trainingSet (img:Image) =
+    let obs =
         trainingSet
-        |> Seq.minBy (fun x -> euclDistance x.Pixels img)
-        |> fun obs -> obs.Label
-    classifier
+        |> Array.minBy (fun observation ->
+            euclDistance observation.Pixels img)
+    obs.Label
 
 let dropHeader (x:_[]) = x.[1..]
 
 let read path =
     File.ReadAllLines(path)
     |> dropHeader
-    |> Array.map (fun line -> line.Split(','))
-    |> Array.map (fun line -> line |> Array.map int)
-    |> Array.map (fun line -> { Label = line.[0]; Pixels = line.[1..] })
+    |> Array.map (fun line ->
+        let numbers = line.Split ',' |> Array.map int
+        { Label = numbers.[0]
+          Pixels = numbers.[1..] })
 
-let trainingPath = @"c:\users\mathias\documents\visual studio 2012\Projects\Digits-Improve\Digits-Improve\trainingsample.csv"
-let training = read trainingPath
-
-let basicModel = train training
-
-let validationPath = @"c:\users\mathias\documents\visual studio 2012\Projects\Digits-Improve\Digits-Improve\validationsample.csv"
-let validation = read validationPath
+let trainingPath = @"Dojo\trainingsample.csv"
+let trainingData = read trainingPath
+let basicModel = train trainingData
+let validationPath = @"Dojo\validationsample.csv"
+let validationData = read validationPath
 
 let evaluate (model:Model) =
-    validation
-    |> Array.averageBy (fun x -> 
-        if (model (x.Pixels) = x.Label) then 1. else 0.)
+    validationData
+    |> Array.Parallel.map (fun observation -> 
+        if (model (observation.Pixels) = observation.Label) then 1.
+        else 0.)
+    |> Array.average
+
+evaluate basicModel
 
 // If you want to go further...
 // * Try out 1, 2, .. n neighbors?
@@ -63,5 +68,6 @@ let blurred n img =
     [| for row in 0 .. (size - n) do
         for col in 0 .. (size - n) do 
             yield blur img row col n |]
+
 
 // Experiment: try out (hopefully) "better" models!

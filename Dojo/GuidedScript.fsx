@@ -24,30 +24,27 @@
   
 // 0. GETTING READY
  
-// Create a new F# Library project, and 
-// copy the entire contents of this file
-// into "Script.fsx"
-
 // <F# QUICK-STARTER> 
 // With F# Script files (.fsx) and F# Interactive,
 // you can "live code" and see what happens.
 
 // Try typing let x = 42 in the script file, 
 // right-click and select "Execute in interactive".
+// You can also hit ALT + ENTER on a line to send it to
+// F# interactive (FSI). This also works in VS Code.
 
 // let "binds" the value on the right to a name.
 
-// Try now typing x + 3;; in the F# Interactive window.
-// ';;' indicates "execute now whatever I just typed".
-
-// Now right-click the following 2 lines and execute:
+// Now execute the following lines in FSI (highlight both
+// lines and execute them "together"):
 let greet name = 
     printfn "Hello, %s" name
 
 // let also binds a name to a function.
 // greet is a function with one argument, name.
-// You should be able to run this in F# Interactive:
-// greet "World";;
+// You should be able to call this function by entering
+// the following and sending it to FSI:
+// greet "World"
 // </F# QUICK-STARTER> 
 
 // Two data files are included in the same place you
@@ -157,8 +154,8 @@ let example = { Label = 1; Pixels = [| 1; 2; 3; |] }
  
  
 // 6. COMPUTING DISTANCES
- 
-// We need to compute the distance between images
+
+// We need to compute the "distance" between images
 // Math reminder: the euclidean distance is
 // distance [ x1; y1; z1 ] [ x2; y2; z2 ] = 
 // sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2))
@@ -176,8 +173,7 @@ let map2Example =
 // but we can easily turn this into a function now:
 let map2PointsExample (P1: int[]) (P2: int[]) =
     Array.map2 (fun p1 p2 -> p1 + p2) P1 P2
-// </F# QUICK-STARTER>  
-
+// </F# QUICK-STARTER>
 
 // Having a function like
 let distance (p1: int[]) (p2: int[]) = 42
@@ -193,9 +189,9 @@ let distance (p1: int[]) (p2: int[]) = 42
 // We are now ready to write a classifier function!
 // The classifier should take a set of pixels
 // (an array of ints) as an input, search for the
-// closest example in our sample, and predict
-// the value of that closest element.
- 
+// closest example in our sample, and use
+// that value as the prediction.
+
 // <F# QUICK-STARTER> 
 // Array.minBy can be handy here, to find
 // the closest element in the Array of examples.
