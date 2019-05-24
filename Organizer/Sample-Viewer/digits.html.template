@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="digits.css">
+		<style>
+			#Training div { background-image: url('training.png'); }
+			#Validation div { background-image: url('validation.png'); }
+		</style>
+	</head>
+	<body>
+		<h2>Training sample</h2>
+		<div class="container">
+			<ol id="Training">
+				{training}
+			</ol>
+		</div>
+
+		<h2>Validation sample</h2>
+		<div class="container">
+			<ol id="Validation">
+				{validation}
+			</ol>
+		</div>
+	</body>
+</html>

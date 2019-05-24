@@ -1,0 +1,49 @@
+body {
+	font: 14px Verdana;
+}
+
+h2 {
+	clear: left;
+	font-weight: normal;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+div.container {
+	height: 40%;
+	width: 98%;
+	padding: 8px;
+	overflow-y: scroll;
+	background-color: #f0f0f0;
+	border: 1px solid gray;
+	margin-bottom: 24px;
+}
+
+ol {
+	padding-left: 0;
+	margin: 0;
+}
+
+li {
+	display: block;
+	float: left;
+	width: 28px;
+	height: 48px;
+	margin-bottom: 10px;
+	border: 1px solid gray;
+	background: white;
+	margin-right: -1px;
+}
+
+li div {
+	width: 28px;
+	height: 28px;
+	border-bottom: 1px solid gray;
+}
+
+li label {
+	display: block;
+	text-align: center;
+	width: 28px;
+}
+
